@@ -47,7 +47,7 @@ export function ProductCard({ product, quantity, onQuantityChange }: ProductCard
           </Badge>
         )}
         {!product.inStock && (
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             <Badge variant="destructive">Out of Stock</Badge>
           </div>
         )}

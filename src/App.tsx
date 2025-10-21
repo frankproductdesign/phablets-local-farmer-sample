@@ -5,7 +5,6 @@ import { Cart } from "./components/Cart";
 import { OrderForm } from "./components/OrderForm";
 import { Leaf, Heart, Truck, Clock } from "lucide-react";
 import { Card, CardContent } from "./components/ui/card";
-import { Badge } from "./components/ui/badge";
 import { Separator } from "./components/ui/separator";
 
 // Mock product data
@@ -15,7 +14,7 @@ const products: Product[] = [
     name: "Fresh Mixed Vegetables",
     price: 12.99,
     unit: "basket",
-    image: "https://images.unsplash.com/photo-1573481078935-b9605167e06b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHZlZ2V0YWJsZXMlMjBmYXJtZXIlMjBtYXJrZXR8ZW58MXx8fHwxNzU5NDg0NjY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/Phablets-Seasonal-Vegetables-Assortment.png",
     description: "A fresh assortment of seasonal vegetables including lettuce, carrots, and peppers",
     category: "Vegetables",
     inStock: true,
@@ -26,7 +25,7 @@ const products: Product[] = [
     name: "Organic Tomatoes",
     price: 4.50,
     unit: "lb",
-    image: "https://images.unsplash.com/photo-1714510949759-f87b13c30cc0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcmdhbmljJTIwdG9tYXRvZXMlMjBiYXNrZXR8ZW58MXx8fHwxNzU5NTQ3OTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/phablets-Organic-Tomato-Harvest.png",
     description: "Vine-ripened organic tomatoes, perfect for salads and cooking",
     category: "Vegetables",
     inStock: true,
@@ -37,7 +36,7 @@ const products: Product[] = [
     name: "Farm Fresh Lettuce",
     price: 3.25,
     unit: "head",
-    image: "https://images.unsplash.com/photo-1657411657995-2c6c101387a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtJTIwZnJlc2glMjBsZXR0dWNlfGVufDF8fHx8MTc1OTU0NzkxNXww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/phablets-Fresh-Harvested-Lettuce.png",
     description: "Crisp, fresh lettuce heads harvested this morning",
     category: "Vegetables",
     inStock: true,
@@ -48,7 +47,7 @@ const products: Product[] = [
     name: "Organic Carrots",
     price: 2.75,
     unit: "bunch",
-    image: "https://images.unsplash.com/photo-1639086495429-d60e72c53c81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcmdhbmljJTIwY2Fycm90cyUyMGhhcnZlc3R8ZW58MXx8fHwxNzU5NTQ3OTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/phablets-Organic Carrots Display.png",
     description: "Sweet, crunchy organic carrots with their green tops",
     category: "Vegetables",
     inStock: true,
@@ -59,7 +58,7 @@ const products: Product[] = [
     name: "Fresh Apples",
     price: 3.99,
     unit: "lb",
-    image: "https://images.unsplash.com/photo-1722553908751-f3d3315702e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMGFwcGxlcyUyMG9yY2hhcmR8ZW58MXx8fHwxNzU5NTQ3OTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/phablets-Orchard-Fresh-Apples.png",
     description: "Crisp, sweet apples from our orchard, perfect for snacking",
     category: "Fruits",
     inStock: true,
@@ -70,7 +69,7 @@ const products: Product[] = [
     name: "Farm Fresh Eggs",
     price: 6.50,
     unit: "dozen",
-    image: "https://images.unsplash.com/photo-1664339307400-9c22e5f44496?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtJTIwZWdncyUyMGJhc2tldHxlbnwxfHx8fDE3NTk1NDc5MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/phablets-Free-range-eggs-from-our-happy-chickens.jpg",
     description: "Free-range eggs from our happy chickens, rich and flavorful",
     category: "Dairy & Eggs",
     inStock: false,
@@ -89,7 +88,7 @@ export default function App() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
 
   const handleQuantityChange = (productId: string, quantity: number) => {
-    setCart(prev => {
+    setCart((prev: Record<string, number>) => {
       if (quantity === 0) {
         const { [productId]: removed, ...rest } = prev;
         return rest;
@@ -105,7 +104,7 @@ export default function App() {
     })
     .filter((item): item is CartItem => item !== null);
 
-  const cartItemCount = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+  const cartItemCount = Object.values(cart).reduce((sum: number, quantity: number) => sum + quantity, 0);
   const cartTotal = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
 
   const handleCheckout = () => {
@@ -275,7 +274,7 @@ export default function App() {
             <span className="text-xl">Green Valley Farm</span>
           </div>
           <p className="text-green-200 text-sm">
-            © 2024 Green Valley Farm. Fresh, local, and family-owned since 1949.
+            © {new Date().getFullYear()} Green Valley Farm. Fresh, local, and family-owned since 1949.
           </p>
         </div>
       </footer>
