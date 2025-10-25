@@ -276,6 +276,9 @@ export default function App() {
           <p className="text-green-200 text-sm">
             © {new Date().getFullYear()} Green Valley Farm. Fresh, local, and family-owned since 1949.
           </p>
+          <p className="text-xs" style={{ color: '#4ade80', marginTop: '16px' }}>
+            Powered by <a href="https://www.phablets.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Phablets.com</a>
+          </p>
         </div>
       </footer>
 
